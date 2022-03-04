@@ -15,3 +15,6 @@ INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 3);
 
 INSERT INTO tb_course (name, img_uri, img_gray_uri) VALUES ('Bootcamp Spring Boot', 'https://imgur.com/bdqES46', 'https://imgur.com/rDH6HWv');
 INSERT INTO tb_course (name, img_uri, img_gray_uri) VALUES ('Bootcamp React', 'https://imgur.com/Oc2Qbik', 'https://imgur.com/1qdor18');
+
+INSERT INTO tb_offer (edition, start_moment, end_moment, course_id) VALUES ('1.0', TIMESTAMP WITH TIME ZONE '2022-01-01T00:00:00Z', TIMESTAMP WITH TIME ZONE '2022-12-31T23:59:59Z', 1);
+INSERT INTO tb_offer (edition, start_moment, end_moment, course_id) VALUES ('1.0', TIMESTAMP WITH TIME ZONE '2022-01-01T00:00:00Z', TIMESTAMP WITH TIME ZONE '2022-12-31T23:59:59Z', 2);

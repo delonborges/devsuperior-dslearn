@@ -4,15 +4,14 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.Instant;
 
 @Entity
-@Table(name = "tb_course")
+@Table(name = "tb_offer")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Course implements Serializable {
+public class Offer implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -21,10 +20,11 @@ public class Course implements Serializable {
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    private String name;
-    private String imgUri;
-    private String imgGrayUri;
+    private String edition;
+    private Instant startMoment;
+    private Instant endMoment;
 
-    @OneToMany(mappedBy = "course")
-    private List<Offer> offers = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
 }
