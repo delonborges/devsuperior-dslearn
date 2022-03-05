@@ -41,3 +41,10 @@ INSERT INTO tb_resource (title, description, position, img_uri, type, offer_id)
 VALUES ('Fórum', 'Tire suas dúvidas', 2, 'https://imgur.com/bdqES46', 2, 1);
 INSERT INTO tb_resource (title, description, position, img_uri, type, offer_id)
 VALUES ('Lives', 'Aulas ao vivo', 3, 'https://imgur.com/bdqES46', 0, 1);
+
+INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id)
+VALUES ('Capítulo 01', 'Introdução ao Spring Boot', 1, 'https://imgur.com/bdqES46', 1, null);
+INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id)
+VALUES ('Capítulo 02', 'CRUD', 2, 'https://imgur.com/bdqES46', 1, 1);
+INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id)
+VALUES ('Capítulo 03', 'Testes automatizados', 3, 'https://imgur.com/bdqES46', 1, 2);

@@ -1,19 +1,16 @@
 package com.delonborges.dslearn.entities;
 
-import com.delonborges.dslearn.entities.enums.ResourceType;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name = "tb_resource")
+@Table(name = "tb_section")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Resource implements Serializable {
+public class Section implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,13 +23,12 @@ public class Resource implements Serializable {
     private String description;
     private Integer position;
     private String imgUri;
-    private ResourceType type;
 
     @ManyToOne
-    @JoinColumn(name = "offer_id")
-    private Offer offer;
+    @JoinColumn(name = "prerequisite_id")
+    private Section prerequisite;
 
-    @OneToMany(mappedBy = "resource")
-    @Setter(AccessLevel.NONE)
-    private List<Section> sections = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "resource_id")
+    private Resource resource;
 }
