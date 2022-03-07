@@ -48,3 +48,8 @@ INSERT INTO tb_section (title, description, position, img_uri, resource_id, prer
 VALUES ('Capítulo 02', 'CRUD', 2, 'https://imgur.com/bdqES46', 1, 1);
 INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id)
 VALUES ('Capítulo 03', 'Testes automatizados', 3, 'https://imgur.com/bdqES46', 1, 2);
+
+INSERT INTO tb_enrollment (user_id, offer_id, enroll_moment, refund_moment, available, only_update)
+VALUES (1, 1, TIMESTAMP WITH TIME ZONE '2022-01-01T08:00:00Z', null, true, false );
+INSERT INTO tb_enrollment (user_id, offer_id, enroll_moment, refund_moment, available, only_update)
+VALUES (2, 1, TIMESTAMP WITH TIME ZONE '2022-01-01T08:00:00Z', null, true, false );
