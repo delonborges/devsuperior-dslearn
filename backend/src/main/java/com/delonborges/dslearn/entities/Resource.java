@@ -34,5 +34,5 @@ public class Resource implements Serializable {
 
     @OneToMany(mappedBy = "resource")
     @Setter(AccessLevel.NONE)
-    private List<Section> sections = new ArrayList<>();
+    private final List<Section> sections = new ArrayList<>();
 }

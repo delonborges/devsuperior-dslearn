@@ -27,5 +27,5 @@ public class Course implements Serializable {
 
     @OneToMany(mappedBy = "course")
     @Setter(AccessLevel.NONE)
-    private List<Offer> offers = new ArrayList<>();
+    private final List<Offer> offers = new ArrayList<>();
 }
