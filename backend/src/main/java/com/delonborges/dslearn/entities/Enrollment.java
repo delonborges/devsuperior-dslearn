@@ -1,6 +1,6 @@
 package com.delonborges.dslearn.entities;
 
-import com.delonborges.dslearn.pk.EnrollmentPK;
+import com.delonborges.dslearn.entities.pk.EnrollmentPK;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,6 +28,7 @@ public class Enrollment {
     private boolean onlyUpdate;
 
     @ManyToMany(mappedBy = "enrollmentsDone")
+    @Setter(AccessLevel.NONE)
     private Set<Lesson> lessonsDone = new HashSet<>();
 
     public Enrollment(User user,

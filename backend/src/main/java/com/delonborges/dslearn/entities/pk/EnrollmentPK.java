@@ -1,4 +1,4 @@
-package com.delonborges.dslearn.pk;
+package com.delonborges.dslearn.entities.pk;
 
 import com.delonborges.dslearn.entities.Offer;
 import com.delonborges.dslearn.entities.User;
