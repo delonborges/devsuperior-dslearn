@@ -71,7 +71,7 @@ VALUES (3, 'Material de apoio', 'https://youtube.com');
 
 INSERT INTO tb_lesson (title, position, section_id)
 VALUES ('Tarefa do capítulo 01', 4, 1);
-INSERT INTO tb_task (id, description, question_count, approval_count, weight, due_date,)
+INSERT INTO tb_task (id, description, question_count, approval_count, weight, due_date)
 VALUES (4, 'Desafio do capítulo 01', 5, 4, 1.0, TIMESTAMP WITH TIME ZONE '2022-12-31T23:59:59Z');
 
 INSERT INTO tb_lessons_done (lesson_id, user_id, offer_id)
