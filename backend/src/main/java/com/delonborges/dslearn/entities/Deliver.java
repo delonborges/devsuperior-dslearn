@@ -13,6 +13,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Deliver implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     @Id

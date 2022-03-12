@@ -4,6 +4,7 @@ import com.delonborges.dslearn.entities.pk.EnrollmentPK;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +14,9 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Enrollment {
+public class Enrollment implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @EmbeddedId
     @Getter(AccessLevel.NONE)
