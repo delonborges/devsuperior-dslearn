@@ -18,6 +18,17 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "tb_user_role",
+               joinColumns = @JoinColumn(name = "user_id"),
+               inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @Setter(AccessLevel.NONE)
+    private final Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    @Setter(AccessLevel.NONE)
+    private final List<Notification> notifications = new ArrayList<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
@@ -26,15 +37,4 @@ public class User implements Serializable {
     private String email;
     private String name;
     private String password;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "tb_user_role",
-               joinColumns = @JoinColumn(name = "user_id"),
-               inverseJoinColumns = @JoinColumn(name = "role_id"))
-    @Setter(AccessLevel.NONE)
-    private Set<Role> roles = new HashSet<>();
-
-    @OneToMany(mappedBy = "user")
-    @Setter(AccessLevel.NONE)
-    private List<Notification> notifications = new ArrayList<>();
 }

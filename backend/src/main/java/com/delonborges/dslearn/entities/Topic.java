@@ -19,6 +19,17 @@ public class Topic implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @ManyToMany
+    @JoinTable(name = "tb_topic_likes",
+               joinColumns = @JoinColumn(name = "topic_id"),
+               inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @Setter(AccessLevel.NONE)
+    private final Set<User> likes = new HashSet<>();
+
+    @OneToMany(mappedBy = "topic")
+    @Setter(AccessLevel.NONE)
+    private final List<Reply> replies = new ArrayList<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
@@ -47,15 +58,4 @@ public class Topic implements Serializable {
     @ManyToOne
     @JoinColumn(name = "reply_id")
     private Reply answer;
-
-    @ManyToMany
-    @JoinTable(name = "tb_topic_likes",
-               joinColumns = @JoinColumn(name = "topic_id"),
-               inverseJoinColumns = @JoinColumn(name = "user_id"))
-    @Setter(AccessLevel.NONE)
-    private Set<User> likes = new HashSet<>();
-
-    @OneToMany(mappedBy = "topic")
-    @Setter(AccessLevel.NONE)
-    private List<Reply> replies = new ArrayList<>();
 }

@@ -17,6 +17,14 @@ public class Offer implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @OneToMany(mappedBy = "offer")
+    @Setter(AccessLevel.NONE)
+    private final List<Resource> resources = new ArrayList<>();
+
+    @OneToMany(mappedBy = "offer")
+    @Setter(AccessLevel.NONE)
+    private final List<Topic> topics = new ArrayList<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
@@ -33,12 +41,4 @@ public class Offer implements Serializable {
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
-
-    @OneToMany(mappedBy = "offer")
-    @Setter(AccessLevel.NONE)
-    private List<Resource> resources = new ArrayList<>();
-
-    @OneToMany(mappedBy = "offer")
-    @Setter(AccessLevel.NONE)
-    private List<Topic> topics = new ArrayList<>();
 }

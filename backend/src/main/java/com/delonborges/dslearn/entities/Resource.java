@@ -17,6 +17,10 @@ public class Resource implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @OneToMany(mappedBy = "resource")
+    @Setter(AccessLevel.NONE)
+    private final List<Section> sections = new ArrayList<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
@@ -31,8 +35,4 @@ public class Resource implements Serializable {
     @ManyToOne
     @JoinColumn(name = "offer_id")
     private Offer offer;
-
-    @OneToMany(mappedBy = "resource")
-    @Setter(AccessLevel.NONE)
-    private List<Section> sections = new ArrayList<>();
 }

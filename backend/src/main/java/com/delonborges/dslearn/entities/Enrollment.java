@@ -20,6 +20,14 @@ public class Enrollment implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @ManyToMany(mappedBy = "enrollmentsDone")
+    @Setter(AccessLevel.NONE)
+    private final Set<Lesson> lessonsDone = new HashSet<>();
+
+    @OneToMany(mappedBy = "enrollment")
+    @Setter(AccessLevel.NONE)
+    private final List<Deliver> deliveries = new ArrayList<>();
+
     @EmbeddedId
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
@@ -33,14 +41,6 @@ public class Enrollment implements Serializable {
 
     private boolean available;
     private boolean onlyUpdate;
-
-    @ManyToMany(mappedBy = "enrollmentsDone")
-    @Setter(AccessLevel.NONE)
-    private Set<Lesson> lessonsDone = new HashSet<>();
-
-    @OneToMany(mappedBy = "enrollment")
-    @Setter(AccessLevel.NONE)
-    private List<Deliver> deliveries = new ArrayList<>();
 
     public Enrollment(User user,
                       Offer offer,

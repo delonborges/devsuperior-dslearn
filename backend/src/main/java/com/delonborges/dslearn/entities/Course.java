@@ -16,6 +16,10 @@ public class Course implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @OneToMany(mappedBy = "course")
+    @Setter(AccessLevel.NONE)
+    private final List<Offer> offers = new ArrayList<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
@@ -24,8 +28,4 @@ public class Course implements Serializable {
     private String name;
     private String imgUri;
     private String imgGrayUri;
-
-    @OneToMany(mappedBy = "course")
-    @Setter(AccessLevel.NONE)
-    private List<Offer> offers = new ArrayList<>();
 }

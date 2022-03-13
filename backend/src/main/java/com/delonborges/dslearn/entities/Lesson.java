@@ -19,6 +19,17 @@ public abstract class Lesson implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @OneToMany(mappedBy = "lesson")
+    @Setter(AccessLevel.NONE)
+    private final List<Deliver> deliveries = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "tb_lessons_done",
+               joinColumns = @JoinColumn(name = "lesson_id"),
+               inverseJoinColumns = {@JoinColumn(name = "user_id"), @JoinColumn(name = "offer_id")})
+    @Setter(AccessLevel.NONE)
+    private final Set<Enrollment> enrollmentsDone = new HashSet<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
@@ -30,15 +41,4 @@ public abstract class Lesson implements Serializable {
     @ManyToOne
     @JoinColumn(name = "section_id")
     private Section section;
-
-    @OneToMany(mappedBy = "lesson")
-    @Setter(AccessLevel.NONE)
-    private List<Deliver> deliveries = new ArrayList<>();
-
-    @ManyToMany
-    @JoinTable(name = "tb_lessons_done",
-               joinColumns = @JoinColumn(name = "lesson_id"),
-               inverseJoinColumns = {@JoinColumn(name = "user_id"), @JoinColumn(name = "offer_id")})
-    @Setter(AccessLevel.NONE)
-    private Set<Enrollment> enrollmentsDone = new HashSet<>();
 }
