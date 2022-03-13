@@ -6,7 +6,9 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -35,6 +37,10 @@ public class Enrollment implements Serializable {
     @ManyToMany(mappedBy = "enrollmentsDone")
     @Setter(AccessLevel.NONE)
     private Set<Lesson> lessonsDone = new HashSet<>();
+
+    @OneToMany(mappedBy = "enrollment")
+    @Setter(AccessLevel.NONE)
+    private List<Deliver> deliveries = new ArrayList<>();
 
     public Enrollment(User user,
                       Offer offer,

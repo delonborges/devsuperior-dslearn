@@ -4,7 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -29,10 +31,14 @@ public abstract class Lesson implements Serializable {
     @JoinColumn(name = "section_id")
     private Section section;
 
+    @OneToMany(mappedBy = "lesson")
+    @Setter(AccessLevel.NONE)
+    private List<Deliver> deliveries = new ArrayList<>();
+
     @ManyToMany
     @JoinTable(name = "tb_lessons_done",
                joinColumns = @JoinColumn(name = "lesson_id"),
                inverseJoinColumns = {@JoinColumn(name = "user_id"), @JoinColumn(name = "offer_id")})
     @Setter(AccessLevel.NONE)
-    private final Set<Enrollment> enrollmentsDone = new HashSet<>();
+    private Set<Enrollment> enrollmentsDone = new HashSet<>();
 }

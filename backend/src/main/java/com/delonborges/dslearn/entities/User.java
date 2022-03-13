@@ -32,7 +32,7 @@ public class User implements Serializable {
                joinColumns = @JoinColumn(name = "user_id"),
                inverseJoinColumns = @JoinColumn(name = "role_id"))
     @Setter(AccessLevel.NONE)
-    private final Set<Role> roles = new HashSet<>();
+    private Set<Role> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
     @Setter(AccessLevel.NONE)
