@@ -1,18 +1,16 @@
 package com.delonborges.dslearn.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.Instant;
 
 @Entity
 @Table(name = "tb_task")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @EqualsAndHashCode(callSuper = true)
 public class Task extends Lesson {
 

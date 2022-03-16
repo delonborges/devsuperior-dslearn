@@ -9,9 +9,11 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "tb_deliver")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Deliver implements Serializable {
 
     private static final long serialVersionUID = 1L;

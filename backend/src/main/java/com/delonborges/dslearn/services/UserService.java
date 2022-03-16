@@ -1,8 +1,10 @@
 package com.delonborges.dslearn.services;
 
+import com.delonborges.dslearn.dto.UserDTO;
 import com.delonborges.dslearn.entities.User;
 import com.delonborges.dslearn.repositories.RoleRepository;
 import com.delonborges.dslearn.repositories.UserRepository;
+import com.delonborges.dslearn.services.exceptions.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,6 +12,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -26,6 +31,13 @@ public class UserService implements UserDetailsService {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    @Transactional(readOnly = true)
+    public UserDTO findById(Long id) {
+        Optional<User> object = userRepository.findById(id);
+        User entity = object.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
+        return new UserDTO(entity);
     }
 
     @Override

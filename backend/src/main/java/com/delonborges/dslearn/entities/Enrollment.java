@@ -13,9 +13,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_enrollment")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Enrollment implements Serializable {
 
     private static final long serialVersionUID = 1L;

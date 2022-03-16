@@ -12,9 +12,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_topic")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Topic implements Serializable {
 
     private static final long serialVersionUID = 1L;

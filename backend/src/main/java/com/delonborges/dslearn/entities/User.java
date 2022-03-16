@@ -12,9 +12,11 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "tb_user")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 public class User implements UserDetails, Serializable {
 
     private static final long serialVersionUID = 1L;

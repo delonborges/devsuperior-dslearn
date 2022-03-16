@@ -11,10 +11,12 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_lesson")
-@Data
 @Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 public abstract class Lesson implements Serializable {
 
     private static final long serialVersionUID = 1L;

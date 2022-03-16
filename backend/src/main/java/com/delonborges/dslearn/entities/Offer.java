@@ -10,9 +10,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_offer")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Offer implements Serializable {
 
     private static final long serialVersionUID = 1L;

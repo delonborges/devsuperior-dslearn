@@ -1,18 +1,16 @@
 package com.delonborges.dslearn.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_content")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @EqualsAndHashCode(callSuper = true)
 public class Content extends Lesson {
 

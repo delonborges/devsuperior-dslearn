@@ -8,9 +8,11 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "tb_notification")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Notification implements Serializable {
 
     private static final long serialVersionUID = 1L;

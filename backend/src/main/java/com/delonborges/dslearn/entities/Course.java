@@ -9,9 +9,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_course")
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Course implements Serializable {
 
     private static final long serialVersionUID = 1L;
