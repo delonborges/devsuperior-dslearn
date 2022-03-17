@@ -1,7 +1,9 @@
 package com.delonborges.dslearn.resources.exceptions;
 
 import com.delonborges.dslearn.services.exceptions.DatabaseIntegrityViolationException;
+import com.delonborges.dslearn.services.exceptions.ForbiddenException;
 import com.delonborges.dslearn.services.exceptions.ResourceNotFoundException;
+import com.delonborges.dslearn.services.exceptions.UnauthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -66,6 +68,32 @@ public class ResourceExceptionHandler {
                                               .getFieldErrors()) {
             error.addError(fieldError.getField(), fieldError.getDefaultMessage());
         }
+
+        return ResponseEntity.status(status)
+                             .body(error);
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<AuthCustomError> forbidden(ForbiddenException exception, HttpServletRequest request) {
+
+        AuthCustomError error = new AuthCustomError();
+        HttpStatus status = HttpStatus.FORBIDDEN;
+
+        error.setError("Forbidden");
+        error.setErrorDescription(exception.getMessage());
+
+        return ResponseEntity.status(status)
+                             .body(error);
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<AuthCustomError> unauthorized(UnauthorizedException exception, HttpServletRequest request) {
+
+        AuthCustomError error = new AuthCustomError();
+        HttpStatus status = HttpStatus.UNAUTHORIZED;
+
+        error.setError("Unauthorized");
+        error.setErrorDescription(exception.getMessage());
 
         return ResponseEntity.status(status)
                              .body(error);
