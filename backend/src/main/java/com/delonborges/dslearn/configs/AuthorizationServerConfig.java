@@ -4,6 +4,7 @@ import com.delonborges.dslearn.components.JwtTokenEnhancer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -25,24 +26,24 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private final JwtTokenStore tokenStore;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenEnhancer jwtTokenEnhancer;
+    private final UserDetailsService userDetailsService;
 
-    @Value("${security.oauth2.client.client-id}")
-    private String clientId;
-    @Value("${security.oauth2.client.client-secret}")
-    private String clientSecret;
-    @Value("${jwt.duration}")
-    private Integer jwtDuration;
+    @Value("${security.oauth2.client.client-id}") private String clientId;
+    @Value("${security.oauth2.client.client-secret}") private String clientSecret;
+    @Value("${jwt.duration}") private Integer jwtDuration;
 
     public AuthorizationServerConfig(BCryptPasswordEncoder passwordEncoder,
                                      JwtAccessTokenConverter accessTokenConverter,
                                      JwtTokenStore tokenStore,
                                      AuthenticationManager authenticationManager,
-                                     JwtTokenEnhancer jwtTokenEnhancer) {
+                                     JwtTokenEnhancer jwtTokenEnhancer,
+                                     UserDetailsService userDetailsService) {
         this.passwordEncoder = passwordEncoder;
         this.accessTokenConverter = accessTokenConverter;
         this.tokenStore = tokenStore;
         this.authenticationManager = authenticationManager;
         this.jwtTokenEnhancer = jwtTokenEnhancer;
+        this.userDetailsService = userDetailsService;
     }
 
     @Override
@@ -57,8 +58,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                .withClient(clientId)
                .secret(passwordEncoder.encode(clientSecret))
                .scopes("read", "write")
-               .authorizedGrantTypes("password")
-               .accessTokenValiditySeconds(jwtDuration);
+               .authorizedGrantTypes("password", "refresh_token")
+               .accessTokenValiditySeconds(jwtDuration)
+               .refreshTokenValiditySeconds(jwtDuration);
     }
 
     @Override
@@ -69,6 +71,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         endpoints.authenticationManager(authenticationManager)
                  .tokenStore(tokenStore)
                  .accessTokenConverter(accessTokenConverter)
-                 .tokenEnhancer(tokenEnhancerChain);
+                 .tokenEnhancer(tokenEnhancerChain)
+                 .userDetailsService(userDetailsService);
     }
 }
