@@ -22,8 +22,7 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final AuthService authService;
 
-    public UserService(UserRepository userRepository,
-                       AuthService authService) {
+    public UserService(UserRepository userRepository, AuthService authService) {
         this.userRepository = userRepository;
         this.authService = authService;
     }

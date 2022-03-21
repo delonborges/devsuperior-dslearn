@@ -20,7 +20,9 @@ public class AuthService {
     @Transactional(readOnly = true)
     public User authenticated() {
         try {
-            String username = SecurityContextHolder.getContext().getAuthentication().getName();
+            String username = SecurityContextHolder.getContext()
+                                                   .getAuthentication()
+                                                   .getName();
             return userRepository.findByEmail(username);
         } catch (Exception e) {
             throw new UnauthorizedException("Invalid user");
@@ -29,7 +31,8 @@ public class AuthService {
 
     public void validateOwnOrAdmin(Long userId) {
         User user = authenticated();
-        if (!user.getId().equals(userId) && !user.hasRole("ROLE_ADMIN")) {
+        if (!user.getId()
+                 .equals(userId) && !user.hasRole("ROLE_ADMIN")) {
             throw new ForbiddenException("Access denied");
         }
     }
