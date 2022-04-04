@@ -9,8 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
-public class NotificationService {
+@Service public class NotificationService {
 
     private final NotificationRepository notificationRepository;
     private final AuthService authService;
@@ -21,9 +20,9 @@ public class NotificationService {
     }
 
     @Transactional(readOnly = true)
-    public Page<NotificationDTO> notificationForCurrentUser(Pageable pageable) {
+    public Page<NotificationDTO> notificationForCurrentUser(boolean unreadOnly, Pageable pageable) {
         User user = authService.authenticated();
-        Page<Notification> notificationPage = notificationRepository.findByUser(user, pageable);
+        Page<Notification> notificationPage = notificationRepository.find(user, unreadOnly, pageable);
         return notificationPage.map(NotificationDTO::new);
     }
 }
